@@ -1,12 +1,12 @@
 <VirtualHost *:80>
 	ServerAdmin webmaster@localhost
-
-	DocumentRoot /var/www
+	ServerName  www.cambiarname.com
+	DocumentRoot /srv/hosting/cambiarruta
 	<Directory />
 		Options FollowSymLinks
 		AllowOverride None
 	</Directory>
-	<Directory /var/www/>
+	<Directory /srv/hosting/cambiarruta/>
 		Options Indexes FollowSymLinks MultiViews
 		AllowOverride None
 		Order allow,deny
