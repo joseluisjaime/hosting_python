@@ -55,9 +55,33 @@ def encryptpassword(password):
 	h = hashlib.sha1(password)
 	h.update(salt)
 	return "{SSHA}" + encode(h.digest() + salt)
+
+def lastuid():
+	
+	l = ldap.initialize("ldap://debian.example.com")
+    
+	base_dn = 'ou=People,dc=example,dc=com' 
+	filtro = '(uidNumber=*)' 
+	attrs = ['uidNumber'] 
+	
+	result = l.search_s( base_dn, ldap.SCOPE_SUBTREE, filtro, attrs )
+	
+	list = []
+
+	for i in result:
+		
+		list.append(i[1]['uidNumber'][0])
+	
+	uidnumber = max(list)
+	uidnumber = int(uidnumber)
+	uidnumber = uidnumber+1
+	uidnumber = str(uidnumber)
+	
+	return uidnumber
 	
 def adduserldap(username,domainname,passencrypt,uidnumber):
-	l = ldap.initialize("ldap://debian.example.com")
+
+    l = ldap.initialize("ldap://debian.example.com")
     l.simple_bind_s("cn=admin,dc=example,dc=com","usuarioq")
     
     dn="uid=%s,ou=People,dc=example,dc=com" %username
