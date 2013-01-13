@@ -105,5 +105,6 @@ def adduserldap(username,domainname,passencrypt,uidnumber):
     
     l.unbind_s
     
-
+def adusermysql(username,userpass):
+	
     
