@@ -5,14 +5,17 @@ fun.checkusername(username)
 domainname = raw_input("enter your domain name, without www and .com :")
 fun.checkdomainname(domainname)
 
-fun.createdir(username)
+lastuid = fun.lastuid()
+
+fun.createdir(username,lastuid)
+
 fun.createvh(username,domainname)
 
 passldap = fun.aleatorypassword()
 
 enpassldap = fun.encryptpassword(passldap)
 
-lastuid = fun.lastuid()
+
 
 fun.adduserldap(username,domainname,enpassldap,lastuid)
 

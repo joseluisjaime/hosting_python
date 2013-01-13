@@ -22,10 +22,12 @@ def checkdomainname(domainname):
         print "domain in use"
         sys.exit()
 
-def createdir(username):
+def createdir(username,lastuid):
     call(["mkdir","-p","/srv/hosting/" + username])
-    call(["chmod","777","/srv/hosting/" + username])
     call(["cp","src/index.html","/srv/hosting/" + username])
+    call(["chmod","-R","700","/srv/hosting/" + username])
+    call(["chgrp","-R","2002","/srv/hosting/" + username])
+    call(["chown","-R",lastuid,"/srv/hosting/" + username])
 
 def createvh(username,domainname):
     f = open("src/default", "r")
@@ -103,4 +105,5 @@ def adduserldap(username,domainname,passencrypt,uidnumber):
     
     l.unbind_s
     
+
     
