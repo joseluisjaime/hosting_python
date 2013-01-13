@@ -1,0 +1,28 @@
+dn: ou=People,dc=example,dc=com
+ou: People
+objectClass: Top
+objectClass: organizationalUnit
+
+dn: ou=Group,dc=example,dc=com
+ou: Group
+objectClass: Top
+objectClass: organizationalUnit
+
+dn: cn=ftpusers,ou=Group,dc=example,dc=com
+objectClass: posixGroup
+objectClass: Top
+cn: ftpusers
+gidNumber: 2002
+
+dn: uid=joseldap,ou=People,dc=example,dc=com
+uid: joseldap
+cn: Joseldap
+objectClass: account
+objectClass: posixAccount
+objectClass: Top
+uidNumber: 2002
+gidNumber: 2002
+homeDirectory: /srv/hosting/joseldap
+userPassword: {SSHA}Xd8i/B84JW7NzT37dKbd6hjs07EUi6xY
+loginShell: /bin/false
+
