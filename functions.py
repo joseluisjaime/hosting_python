@@ -7,6 +7,7 @@ import hashlib
 from base64 import urlsafe_b64encode as encode
 import ldap
 import ldap.modlist as modlist
+import MySQLdb as mysql
 
 def checkusername(username):
     listuser = commands.getoutput("ls /srv/hosting/")
@@ -25,7 +26,7 @@ def checkdomainname(domainname):
 def createdir(username,lastuid):
     call(["mkdir","-p","/srv/hosting/" + username])
     call(["cp","src/index.html","/srv/hosting/" + username])
-    call(["chmod","-R","700","/srv/hosting/" + username])
+    call(["chmod","-R","744","/srv/hosting/" + username])
     call(["chgrp","-R","2002","/srv/hosting/" + username])
     call(["chown","-R",lastuid,"/srv/hosting/" + username])
 
@@ -105,6 +106,13 @@ def adduserldap(username,domainname,passencrypt,uidnumber):
     
     l.unbind_s
     
-def adusermysql(username,userpass):
+def addusermysql(username,domainname,userpass):
 	
+    db=mysql.connect(host='localhost',user='root',passwd='usuarioq')
+    cursor=db.cursor()
+    sql='create database db_%s;' %domainname
+    cursor.execute(sql)
+    sql="GRANT ALL PRIVILEGES ON db_%s.* TO 'my%s'@'localhost' IDENTIFIED BY %s;" %(domainname,username,userpass)
+    cursor.execute(sql)
+    cursor.close()
     

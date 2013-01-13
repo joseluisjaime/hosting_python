@@ -15,11 +15,18 @@ passldap = fun.aleatorypassword()
 
 enpassldap = fun.encryptpassword(passldap)
 
-
-
 fun.adduserldap(username,domainname,enpassldap,lastuid)
 
+passmysql = fun.aleatorypassword()
+fun.addusermysql(username,domainname,passmysql)
+
 print "---------------------------------------------"
-print "tu usuario para entrar en ftp es: " + username
-print "Tu nombre de dominio es: www." +domainname + ".com"
-print "tu password ftp es: " + passldap
+print """
+Hosting creado correctamente
+
+"""
+print "tu usuario para entrar en ftp es: " + username+"\n"
+print "Tu nombre de dominio es: www." +domainname + ".com\n"
+print "tu password ftp es: " + passldap+"\n"
+print "Nombre de la base de datos: db_"+domainname+"\n"
+print "Password para entrar a phpmyadmin: "+passmysql

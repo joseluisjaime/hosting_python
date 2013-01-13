@@ -1,0 +1,6 @@
+aptitude install
+slapd
+mysql-server
+apache2
+python-ldap
+python-mysqldb
