@@ -68,7 +68,7 @@ def lastuid():
 	attrs = ['uidNumber'] 
 	
 	result = l.search_s( base_dn, ldap.SCOPE_SUBTREE, filtro, attrs )
-	
+		
 	list = []
 
 	for i in result:
@@ -112,7 +112,7 @@ def addusermysql(username,domainname,userpass):
     cursor=db.cursor()
     sql='create database db_%s;' %domainname
     cursor.execute(sql)
-    sql="GRANT ALL PRIVILEGES ON db_%s.* TO 'my%s'@'localhost' IDENTIFIED BY %s;" %(domainname,username,userpass)
+    sql="GRANT ALL PRIVILEGES ON db_%s.* TO 'my%s'@'localhost' IDENTIFIED BY '%s';" %(domainname,username,userpass)
     cursor.execute(sql)
     cursor.close()
     
