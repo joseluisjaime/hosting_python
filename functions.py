@@ -26,7 +26,7 @@ def checkdomainname(domainname):
 def createdir(username,lastuid):
     call(["mkdir","-p","/srv/hosting/" + username])
     call(["cp","src/index.html","/srv/hosting/" + username])
-    call(["chmod","-R","744","/srv/hosting/" + username])
+    call(["chmod","-R","755","/srv/hosting/" + username])
     call(["chgrp","-R","2002","/srv/hosting/" + username])
     call(["chown","-R",lastuid,"/srv/hosting/" + username])
 
@@ -61,7 +61,7 @@ def encryptpassword(password):
 
 def lastuid():
 	
-	l = ldap.initialize("ldap://debian.example.com")
+	l = ldap.initialize("ldap://hosting.example.com")
     
 	base_dn = 'ou=People,dc=example,dc=com' 
 	filtro = '(uidNumber=*)' 
@@ -84,7 +84,7 @@ def lastuid():
 	
 def adduserldap(username,domainname,passencrypt,uidnumber):
 
-    l = ldap.initialize("ldap://debian.example.com")
+    l = ldap.initialize("ldap://hosting.example.com")
     l.simple_bind_s("cn=admin,dc=example,dc=com","usuarioq")
     
     dn="uid=%s,ou=People,dc=example,dc=com" %username
