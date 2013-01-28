@@ -20,6 +20,8 @@ fun.adduserldap(username,domainname,enpassldap,lastuid)
 passmysql = fun.aleatorypassword()
 fun.addusermysql(username,domainname,passmysql)
 
+fun.createzone(domainname)
+
 print "---------------------------------------------"
 print """
 Hosting creado correctamente

@@ -116,3 +116,29 @@ def addusermysql(username,domainname,userpass):
     cursor.execute(sql)
     cursor.close()
     
+def createzone(domainname):
+	
+	f = open("src/db.changename","r")
+	texto = f.read()
+	texto = texto.replace("changename",domainname)
+	f.close()
+	
+	nuevo = open("/var/cache/bind/db."+domainname,"w")
+	nuevo.write(texto)
+	nuevo.close()
+	
+	f = open("/etc/bind/named.conf.local","a")
+	newzone = """
+zone "%s.com"
+{
+	type master;
+	file "db.%s";
+};
+""" %(domainname,domainname)
+	f.write(newzone)
+	f.close()
+	
+	call(["service","bind9","restart"])
+	
+	
+	
