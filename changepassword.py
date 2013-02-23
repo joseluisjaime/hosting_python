@@ -13,3 +13,8 @@ rcommon_pass = getpass("vuelva a escribir la password: ")
 if common_pass != rcommon_pass: 
     print "Las pasword no coinciden"
     sys.exit()
+
+sql = "set password for mypepelu@'localhost' = password('hola');"
+
+db=mysql.connect('localhost','root','usuarioq','mysql')
+
