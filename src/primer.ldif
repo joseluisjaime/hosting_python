@@ -1,0 +1,14 @@
+dn: uid=pruebau,ou=People,dc=example,dc=com
+uid: pruebau
+cn: Usuario de prueba
+objectClass: account
+objectClass: posixAccount
+objectClass: top
+objectClass: shadowAccount
+userPassword: {SSHA}/IH0J8ymm+IBTbX+0jy6OzC9+HfN7dpN
+loginShell: /bin/false
+uidNumber: 2000
+gidNumber: 2000
+homeDirectory: /home/pruebau
+gecos: Usuario de prueba
+host: *

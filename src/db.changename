@@ -8,7 +8,7 @@ changename.com.	IN	SOA	hosting.changename.com. hosting.changename.com. (
 ;
 			IN	NS	hosting.changename.com.
 $ORIGIN changename.com.
-hosting		A	10.0.0.5
+hosting		A	192.168.1.16
 www		CNAME	hosting
 mysql		CNAME	hosting
 ftp		CNAME	hosting

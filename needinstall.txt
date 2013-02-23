@@ -3,6 +3,8 @@ slapd
 ldap-utils
 mysql-server
 apache2
+proftpd
+bind9
 python-ldap
 python-mysqldb
 proftpd-mod-ldap

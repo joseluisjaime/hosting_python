@@ -46,7 +46,7 @@ def createvh(username,domainname):
 
 def aleatorypassword():
 	
-	length = 7
+	length = 4
 	string = "1234567890abcdefghijklmnopqrstuvwxyz"
 	password = ""
 	password = password.join([choice(string) for i in range(length)])
@@ -54,10 +54,8 @@ def aleatorypassword():
 	
 def encryptpassword(password):
 	
-	salt = os.urandom(4)
-	h = hashlib.sha1(password)
-	h.update(salt)
-	return "{SSHA}" + encode(h.digest() + salt)
+	enpassword = commands.getoutput("slappasswd -h {SSHA} -s "+password)
+	return enpassword
 
 def lastuid():
 	
