@@ -2,15 +2,20 @@ import functions as fun
 import sys
 
 username = raw_input("enter your username: ")
-existe = fun.checkusername(username)
+existeuser = fun.checkusername(username)
 
-if existe == 'y':
+if existeuser == 'y':
 	print "el usuario ya existe"
 	sys.exit()
 
 
-domainname = raw_input("enter your domain name, without www and .com :")
-fun.checkdomainname(domainname)
+domainname = raw_input("enter your domain name, only .com :")
+domainname = domainname[:-4]
+existedomain = fun.checkdomainname(domainname)
+
+if existedomain == 'y':
+	print "el dominio ya existe"
+	sys.exit()
 
 lastuid = fun.lastuid()
 
@@ -38,4 +43,4 @@ print "tu usuario para entrar en ftp es: " + username+"\n"
 print "Tu nombre de dominio es: www." +domainname + ".com\n"
 print "tu password ftp es: " + passldap+"\n"
 print "Nombre de la base de datos: db_"+domainname+"\n"
-print "Password para entrar a phpmyadmin: "+passmysql
+print "Password para entrar a phpmyadmin: "+passmysql+"\n"

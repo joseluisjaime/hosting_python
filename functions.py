@@ -14,15 +14,14 @@ def checkusername(username):
     listuser = listuser.split("\n")
     if username in listuser:
         control = "y"
-		
 	return control
        
 def checkdomainname(domainname):
     listdomain = commands.getoutput("ls /etc/apache2/sites-available/")
     listdomain = listdomain.split("\n")
     if domainname in listdomain:
-        print "domain in use"
-        sys.exit()
+        control = "y"  
+	return control
 
 def createdir(username,lastuid):
     call(["mkdir","-p","/srv/hosting/" + username])
@@ -42,8 +41,8 @@ def createvh(username,domainname):
     nuevo.write(texto)
     nuevo.close() 
 
-    call(["a2ensite",domainname])
-    call(["service","apache2","reload"])
+    call(["a2ensite",domainname], stdout=open(os.devnull, 'wb'))
+    call(["service","apache2","reload"], stdout=open(os.devnull, 'wb'))
 
 def aleatorypassword():
 	
@@ -137,7 +136,7 @@ zone "%s.com"
 	f.write(newzone)
 	f.close()
 	
-	call(["service","bind9","restart"])
+	call(["service","bind9","restart"], stdout=open(os.devnull, 'wb'))
 	
 def changepassmysql(username,password):	
     
@@ -153,3 +152,71 @@ def changepassftp(username,password):
     l.simple_bind_s("cn=admin,dc=example,dc=com","usuarioq")    
     dn="uid=%s,ou=People,dc=example,dc=com" %username
     l.passwd_s(dn,None,password)
+
+def getusername(domainname):
+	
+	l = ldap.initialize("ldap://hosting.example.com")
+	base_dn = 'ou=People,dc=example,dc=com' 
+	filtro = '(description=%s)' % domainname 
+	attrs = ['cn'] 
+	
+	result = l.search_s( base_dn, ldap.SCOPE_SUBTREE, filtro, attrs )
+	username = result[0][1]['cn'][0]
+	return username
+	
+def deldir(username):
+	
+	call(["rm","-r","/srv/hosting/" + username])
+
+def delvh(domainname):
+	
+    call(["a2dissite",domainname], stdout=open(os.devnull, 'wb'))
+    call(["service","apache2","reload"] , stdout=open(os.devnull, 'wb'))
+    call(["rm","/etc/apache2/sites-available/"+domainname])
+
+def deluserldap(username):
+	
+	    l = ldap.initialize("ldap://hosting.example.com")
+	    l.simple_bind_s("cn=admin,dc=example,dc=com","usuarioq")
+	    dn="uid=%s,ou=People,dc=example,dc=com" %username
+	    l.delete_s(dn)
+
+def delmysql(username,domainname):
+	
+    db=mysql.connect(host='localhost',user='root',passwd='usuarioq')
+    cursor=db.cursor()
+    sql='drop database db_%s;' %domainname
+    cursor.execute(sql)
+    sql="drop user 'my%s'@'localhost';" % username
+    cursor.execute(sql)
+    cursor.close()
+	
+def delzone(domainname):
+
+    f = open ('/etc/bind/named.conf.local','r')
+    contenido = f.readlines()
+    f.close()
+    
+    elemento = 'zone "%s.com"\n' % domainname
+    temp = 1
+    for i in range(0,len(contenido)):
+		
+        if (contenido[i] == elemento):
+            temp = i
+	
+
+    for i in range(0,5):
+        del contenido[temp]
+    
+    f = open ('/etc/bind/named.conf.local','w')
+
+    for i in range(0,len(contenido)):		
+        f.write(contenido[i])
+	
+    f.close()
+    
+    call(["rm","/var/cache/bind/db."+domainname])	
+    call(["service","bind9","restart"], stdout=open(os.devnull, 'wb'))
+	
+	
+		
