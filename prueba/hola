@@ -12,20 +12,141 @@ zone "example.com"
 	file "db.example.com";
 };
 
-zone "0.0.10.in-addr.arpa"
+zone "1.168.192.in-addr.arpa"
 {
 	type master;
-	file "db.10.0.0";
+	file "db.192.168.1";
 };
 
-zone "pepe.com"
+
+zone "sevilla.com"
 {
 	type master;
-	file "db.pepe.com";
+	file "db.sevilla";
 };
 
-zone "paco.com"
+zone "casajuanpepe.com"
 {
 	type master;
-	file "db.paco.com";
+	file "db.casajuanpepe";
+};
+
+zone "marca.com"
+{
+	type master;
+	file "db.marca";
+};
+
+zone "joselu.com"
+{
+	type master;
+	file "db.joselu";
+};
+
+zone "ana.com"
+{
+	type master;
+	file "db.ana";
+};
+
+zone "toldos.com"
+{
+	type master;
+	file "db.toldos";
+};
+
+zone "puntocruz.com"
+{
+	type master;
+	file "db.puntocruz";
+};
+
+zone "eljose.com"
+{
+	type master;
+	file "db.eljose";
+};
+
+zone "user1.com"
+{
+	type master;
+	file "db.user1";
+};
+
+zone "bar.com"
+{
+	type master;
+	file "db.bar";
+};
+
+zone "pabeber.com"
+{
+	type master;
+	file "db.pabeber";
+};
+
+zone "asd.com"
+{
+	type master;
+	file "db.asd";
+};
+
+zone "qwerty.com"
+{
+	type master;
+	file "db.qwerty";
+};
+
+zone "xcv.com"
+{
+	type master;
+	file "db.xcv";
+};
+
+zone "12345.com"
+{
+	type master;
+	file "db.12345";
+};
+
+zone "emede.com"
+{
+	type master;
+	file "db.emede";
+};
+
+zone "polo.com"
+{
+	type master;
+	file "db.polo";
+};
+
+zone "michael.com"
+{
+	type master;
+	file "db.michael";
+};
+
+zone "hola.com"
+{
+	type master;
+	file "db.hola";
+};
+
+zone "denuevo.com"
+{
+	type master;
+	file "db.denuevo";
+};
+
+zone "again.com"
+{
+	type master;
+	file "db.again";
+};
+
+zone "maria.com"
+{
+	type master;
+	file "db.maria";
 };

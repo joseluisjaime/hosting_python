@@ -13,9 +13,10 @@ def checkusername(username):
     listuser = commands.getoutput("ls /srv/hosting/")
     listuser = listuser.split("\n")
     if username in listuser:
-        print "Username in use"
-        sys.exit()
-
+        control = "y"
+		
+	return control
+       
 def checkdomainname(domainname):
     listdomain = commands.getoutput("ls /etc/apache2/sites-available/")
     listdomain = listdomain.split("\n")
@@ -138,5 +139,12 @@ zone "%s.com"
 	
 	call(["service","bind9","restart"])
 	
+def changepassmysql(username,password):	
+    
+	db=mysql.connect('localhost','root','usuarioq','mysql')
+	sql = "set password for my%s@'localhost' = password('%s');" % (username,password)
+	cursor=db.cursor()
+	cursor.execute(sql)
+	cursor.close()
 	
 	

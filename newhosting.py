@@ -1,7 +1,14 @@
 import functions as fun
+import sys
 
 username = raw_input("enter your username: ")
-fun.checkusername(username)
+existe = fun.checkusername(username)
+
+if existe == 'y':
+	print "el usuario ya existe"
+	sys.exit()
+
+
 domainname = raw_input("enter your domain name, without www and .com :")
 fun.checkdomainname(domainname)
 

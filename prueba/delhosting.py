@@ -2,9 +2,9 @@ f = open ('hola','r')
 lista = f.readlines()
 f.close()
 
-f = open ('hecho','w')
+f = open ('hola','w')
 
-elemento = 'zone "pepe.com"\n'
+elemento = 'zone "pepepalote.com"\n'
 
 
 temp = 'asd'
@@ -12,7 +12,14 @@ for i in range(0,len(lista)):
 	if (lista[i] == elemento):
 		temp = i	
 
-for i in 4:
-	temp = temp
-    print lista[temp]
 
+for i in range(0,6):
+	
+    del lista[temp]
+    
+
+for i in range(0,len(lista)):
+	f.write(lista[i])
+
+
+f.close()
