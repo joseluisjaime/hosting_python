@@ -27,6 +27,7 @@ if accion == '-sql':
         print "Las pasword no coinciden"
         sys.exit()
     fun.changepassmysql(username,password)
+    print "password actualizada correctamente"
 
 elif accion == '-ftp':
 	
@@ -36,6 +37,8 @@ elif accion == '-ftp':
     if password != rpassword: 
         print "Las pasword no coinciden"
         sys.exit()
+    fun.changepassftp(username,password)
+    print "password actualizada correctamente"
 	
 else:
 	

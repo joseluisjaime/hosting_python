@@ -147,4 +147,9 @@ def changepassmysql(username,password):
 	cursor.execute(sql)
 	cursor.close()
 	
+def changepassftp(username,password):
 	
+    l = ldap.initialize("ldap://hosting.example.com")
+    l.simple_bind_s("cn=admin,dc=example,dc=com","usuarioq")    
+    dn="uid=%s,ou=People,dc=example,dc=com" %username
+    l.passwd_s(dn,None,password)
