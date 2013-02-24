@@ -8,4 +8,4 @@ example.com.	IN	SOA	hosting.example.com. hosting.example.com. (
 ;
 			IN	NS	hosting.example.com.
 $ORIGIN example.com.
-hosting		A	10.0.0.5
+hosting		A	192.168.1.16
