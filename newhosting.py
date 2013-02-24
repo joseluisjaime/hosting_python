@@ -40,7 +40,8 @@ Hosting creado correctamente
 
 """
 print "tu usuario para entrar en ftp es: " + username+"\n"
-print "Tu nombre de dominio es: www." +domainname + ".com\n"
+print "Tu nombre de dominio es: " +domainname + ".com\n"
 print "tu password ftp es: " + passldap+"\n"
 print "Nombre de la base de datos: db_"+domainname+"\n"
+print "Nombre usuario para entrar a la base de datos: my"+username+"\n"
 print "Password para entrar a phpmyadmin: "+passmysql+"\n"
