@@ -18,3 +18,5 @@ Los servicios implementados son:
 -Proftpd como servidor ftp.
 -bind9 como servidor de resolución de nombres DNS
 -phpmyadmin como gestor web de base de datos
+
+PDF: https://es.scribd.com/doc/171840222/Hosting-Jljaime
